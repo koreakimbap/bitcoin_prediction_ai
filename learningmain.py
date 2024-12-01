@@ -6,7 +6,7 @@ import numpy as np
 from tensorflow.keras.callbacks import EarlyStopping
 
 # Step 1: Load Data
-file_path = 'btc_with_normalized_indicators.csv'
+file_path = 'https://raw.githubusercontent.com/koreakimbap/bitcoin_prediction_ai/main/btc_with_normalized_indicators.csv'
 data = pd.read_csv(file_path)
 
 # Step 2: Split Data (Train/Test)
