@@ -77,9 +77,11 @@ from tensorflow.keras.callbacks import EarlyStopping
 # Step 1: Load Data
 file_path = 'https://raw.githubusercontent.com/koreakimbap/bitcoin_prediction_ai/main/btc_with_normalized_indicators.csv'
 data = pd.read_csv(file_path)
+traindata = np.array(data).astype(np.float32)
+traindata = np.nan_to_num(traindata)
 
 # Step 2: Split Data (Train/Test)
-train_set, test_set = split_data(data, train_ratio=0.8, sequence_length=100)
+train_set, test_set = split_data(traindata, train_ratio=0.8, sequence_length=100)
 
 # Step 3: Reduce Size of Data (Use only a subset)
 train_set = train_set[:10000]  # Use the first 10,000 rows for training data
