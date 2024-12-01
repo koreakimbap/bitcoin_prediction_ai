@@ -77,8 +77,9 @@ from tensorflow.keras.callbacks import EarlyStopping
 # Step 1: Load Data
 file_path = 'https://raw.githubusercontent.com/koreakimbap/bitcoin_prediction_ai/main/btc_with_normalized_indicators.csv'
 data = pd.read_csv(file_path)
-traindata = np.array(data).astype(np.float32)
-traindata = np.nan_to_num(traindata)
+
+traindata = data.select_dtypes(include=[np.number])
+traindata = traindata.fillna(0)
 
 # Step 2: Split Data (Train/Test)
 train_set, test_set = split_data(traindata, train_ratio=0.8, sequence_length=100)
@@ -100,10 +101,6 @@ predict_length = 50
 
 X_train, y_train = prepare_lstm_data(train_set, sequence_length, predict_length)
 X_test, y_test = prepare_lstm_data(test_set, sequence_length, predict_length)
-
-# Convert to NumPy arrays
-X_train, y_train = np.array(X_train), np.array(y_train)
-X_test, y_test = np.array(X_test), np.array(y_test)
 
 # Step 5: Build Model
 model = build_model(input_shape=(sequence_length, X_train.shape[2]))  # Adjust shape automatically
