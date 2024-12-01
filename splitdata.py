@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 
 # Load the data (ensure to adjust the file path if needed)
-file_path = 'c:/Users/jhkim/Desktop/bitcoin future prediction ai/btc_with_normalized_indicators.csv'
-data = pd.read_csv(file_path)
+file_url = 'https://raw.githubusercontent.com/koreakimbap/bitcoin_prediction_ai/main/btc_with_normalized_indicators.csv'
+data = pd.read_csv(file_url)
 
 def split_data(data, train_ratio=0.8, sequence_length=100):
     
