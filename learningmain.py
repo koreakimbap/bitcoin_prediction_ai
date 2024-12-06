@@ -103,8 +103,9 @@ X_train, y_train = prepare_lstm_data(train_set, sequence_length, predict_length)
 X_test, y_test = prepare_lstm_data(test_set, sequence_length, predict_length)
 
 # 오류 ㅅㅂ
-X_train = X_train.reshape(X_train.shape[0], sequence_length, 1, X_train.shape[2], 1)
-X_test = X_test.reshape(X_test.shape[0], sequence_length, 1, X_test.shape[2], 1)
+# X_train과 X_test를 5D 텐서로 변환
+X_train = X_train.reshape(X_train.shape[0], sequence_length, 100, 1, 1)  # sequence_length, height, width, channels
+X_test = X_test.reshape(X_test.shape[0], sequence_length, 100, 1, 1)
 
 # Step 5: Build Model
 model = build_model(input_shape=(sequence_length, X_train.shape[2]))  # Adjust shape automatically
