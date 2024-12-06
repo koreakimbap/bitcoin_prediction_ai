@@ -103,8 +103,8 @@ X_train, y_train = prepare_lstm_data(train_set, sequence_length, predict_length)
 X_test, y_test = prepare_lstm_data(test_set, sequence_length, predict_length)
 
 # 오류 ㅅㅂ
-X_train = X_train.reshape(X_train.shape[0], 1, X_train.shape[1], X_train.shape[2], X_train.shape[3])
-X_test = X_test.reshape(X_test.shape[0], 1, X_test.shape[1], X_test.shape[2], X_test.shape[3])
+X_train = X_train.reshape(X_train.shape[0], sequence_length, 1, X_train.shape[2], 1)
+X_test = X_test.reshape(X_test.shape[0], sequence_length, 1, X_test.shape[2], 1)
 
 # Step 5: Build Model
 model = build_model(input_shape=(sequence_length, X_train.shape[2]))  # Adjust shape automatically
